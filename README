@@ -1,0 +1,20 @@
+jQuery NewsTicker 1.0.1
+Copyright 2010 Jonathan Wilsson
+http://www.jonathanwilsson.com/projects/jquery-newsticker/
+
+Requires at least jQuery 1.4.4.
+
+NewsTicker is a little plugin which allows you to create a scrolling news ticker.
+
+Look at the demo here: http://www.jonathanwilsson.com/projects/jquery-newsticker/
+
+If you have any questions or thoughts feel free to contact me.
+
+Changelog
+
+1.0.1
+Added a option for the interval
+Removed the hardcoding of marginTop when sliding. It now pulls the value from the height of the ticker.
+
+1.0
+Initial release

@@ -1,0 +1,40 @@
+html,body,div,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd,p,blockquote,pre,form,fieldset,table,th,td {
+	background:transparent;
+	border:0;
+	font-size:100%;
+	margin:0;
+	outline:0;
+	padding:0;
+	vertical-align:baseline;
+}
+
+body {
+	font:12px "Trebuchet MS", sans-serif;
+	height:100%;
+}
+
+#content {
+	margin:0 auto;
+	width:300px;
+}
+
+#ticker {
+	height:120px;
+	list-style:none;
+	overflow:hidden;
+	width:220px;
+}
+
+#ticker li {
+	height:inherit;
+	width:200px;
+}
+
+h1 {
+	font-size:20px;
+	margin:10px 0;
+}
+
+p {
+	margin:10px 0;
+}
