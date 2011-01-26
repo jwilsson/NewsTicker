@@ -1,16 +1,19 @@
-jQuery NewsTicker 1.0.1
+jQuery NewsTicker 1.0.2
 Copyright 2010 Jonathan Wilsson
-http://www.jonathanwilsson.com/projects/jquery-newsticker/
+http://jonathanwilsson.com/projects/jquery-newsticker/
 
 Requires at least jQuery 1.4.4.
 
 NewsTicker is a little plugin which allows you to create a scrolling news ticker.
 
-Look at the demo here: http://www.jonathanwilsson.com/projects/jquery-newsticker/
+Look at the demo here: http://jonathanwilsson.com/projects/jquery-newsticker/
 
 If you have any questions or thoughts feel free to contact me.
 
 Changelog
+
+1.0.2
+Rewrote bits of the code to perform better
 
 1.0.1
 Added a option for the interval
