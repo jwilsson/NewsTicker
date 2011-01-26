@@ -13,7 +13,7 @@
 
 (function ($) {
 
-	$.fn.NewsTicker = function(options) {
+	$.fn.NewsTicker = function (options) {
 
 		var defaults = {
 			interval: 5000
@@ -21,7 +21,7 @@
 
 		return this.each(function () {
 
-			var $this = $(this), id = '#' + $elem.attr('id'), ticker_height = $this.height()
+			var $this = $(this), id = '#' + $this.attr('id'), ticker_height = $this.height();
 
 			// If the user has supplied options let's merge them with the defaults
 			if (options) {
@@ -30,13 +30,13 @@
 
 			// Change the text and the specified interval
 			setInterval(function () {
-				$(id + ' li:first').animate( {marginTop: ticker_height}, 800, function () {
+				$(id + ' li:first').animate({marginTop: ticker_height}, 800, function () {
 					$(this).detach().appendTo(id).removeAttr('style');
 				});
 			}, defaults.interval);
 
 		});
 
-	}
+	};
 
 }(jQuery));
