@@ -21,7 +21,7 @@ body {
 #ticker {
 	height:120px;
 	list-style:none;
-	overflow:hidden;
+	overflow:auto;
 	width:220px;
 }
 

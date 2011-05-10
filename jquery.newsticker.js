@@ -1,5 +1,5 @@
 /**
- * jQuery NewsTicker 1.0.3
+ * jQuery NewsTicker 1.1
  * http://jonathanwilsson.com/projects/jquery-newsticker/
  *
  * Copyright 2011 Jonathan Wilsson
@@ -14,32 +14,55 @@
 (function ($) {
 
     $.fn.NewsTicker = function (options) {
-
-	var defaults = {
-	    interval: 5000
+	
+        var vars = { // Internal vars. Please don't touch
+	    id: "",
+	    height: 0,
+	    timeout: null
+	},
+	defaults = {
+	    interval: 5000,
+	    speed: 800,
+	    pauseOnHover: true
 	};
-
+	
+	// If the user has supplied options let's merge them with the defaults
+	if (options) {
+	    $.extend(defaults, options);
+	}
+	
+	// Change the text and the specified interval
+	function tick () {
+	    console.log(vars.id);
+	    console.log(vars.height);
+	    
+	    vars.timeout = setTimeout(function () {
+		$(vars.id + " li:first").animate({marginTop: vars.height}, defaults.speed, function () {
+		    $(this).detach().appendTo(vars.id).removeAttr("style");
+		});
+				
+		tick();
+	    }, defaults.interval);
+	}
+	
 	return this.each(function () {
 
-	    var $this = $(this), id = '#' + $this.attr('id'), ticker_height = $this.height();
-
-	    // If the user has supplied options let's merge them with the defaults
-	    if (options) {
-		$.extend(defaults, options);
-	    }
-			
-	    // Change the text and the specified interval
-	    function tick () {
-		setTimeout(function () {
-		    $(id + ' li:first').animate({marginTop: ticker_height}, 800, function () {
-			$(this).detach().appendTo(id).removeAttr('style');
-		    });
-				
-		    tick();
-		}, defaults.interval);
-	    }
-			
+	    var $this = $(this);
+	    
+	    $this.css("overflow", "hidden");
+	    
+	    vars.id = "#" + $this.attr("id");
+	    vars.height = $this.height()
+	    
 	    tick();
+	    
+	    if (defaults.pauseOnHover) {
+		$this.bind("mouseover", function () {
+		   clearTimeout(vars.timeout); 
+		}).bind("mouseout", function () {
+		    tick();
+		});
+	    }
 	});
 	    
     };

@@ -1,4 +1,4 @@
-jQuery NewsTicker 1.0.3
+jQuery NewsTicker 1.1
 Copyright 2011 Jonathan Wilsson
 http://jonathanwilsson.com/projects/jquery-newsticker/
 
@@ -11,6 +11,12 @@ Look at the demo here: http://jonathanwilsson.com/projects/jquery-newsticker/
 If you have any questions or thoughts feel free to contact me.
 
 Changelog
+
+1.1
+Improved accessibility when JavaScript is disabled
+Added option to control the speed of the animation
+Added option to pause the ticker on hover
+Code improvements
 
 1.0.3
 Changed setInterval to setTimeout
