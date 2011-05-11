@@ -33,9 +33,6 @@
 	
 	// Change the text and the specified interval
 	function tick () {
-	    console.log(vars.id);
-	    console.log(vars.height);
-	    
 	    vars.timeout = setTimeout(function () {
 		$(vars.id + " li:first").animate({marginTop: vars.height}, defaults.speed, function () {
 		    $(this).detach().appendTo(vars.id).removeAttr("style");
