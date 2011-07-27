@@ -15,53 +15,46 @@
                 The text below will change at 3 seconds intervals.
             </p>
 
-            <ul id="ticker">
-
-				<li>
-					<strong>Titolo Lorem Ipsum 1</strong>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit, ante id porttitor faucibus, odio eros pellentesque sapien, at consectetur mi nibh at massa.
-					</p>
-				</li>
-
-				<li>
-					<strong>Titolo Lorem Ipsum 2</strong>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit, ante id porttitor faucibus, odio eros pellentesque sapien, at consectetur mi nibh at massa.
-					</p>
-				</li>
-
-				<li>
-					<strong>Titolo Lorem Ipsum 3</strong>
-
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit, ante id porttitor faucibus, odio eros pellentesque sapien, at consectetur mi nibh at massa.
-					</p>
-				</li>
-
-				<li>
-					<strong>Titolo Lorem Ipsum 4</strong>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit, ante id porttitor faucibus, odio eros pellentesque sapien, at consectetur mi nibh at massa.
-					</p>
-
-				</li>
-
-				<li>
-					<strong>Titolo Lorem Ipsum 5</strong>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit, ante id porttitor faucibus, odio eros pellentesque sapien, at consectetur mi nibh at massa.
-					</p>
-				</li>
-			</ul>
+            <ul>
+		<li>
+		    <strong>Titolo Lorem Ipsum 1</strong>
+		    <p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit, ante id porttitor faucibus, odio eros pellentesque sapien, at consectetur mi nibh at massa.
+		    </p>
+		</li>
+		<li>
+		    <strong>Titolo Lorem Ipsum 2</strong>
+		    <p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit, ante id porttitor faucibus, odio eros pellentesque sapien, at consectetur mi nibh at massa.
+		    </p>
+		</li>
+		<li>
+		    <strong>Titolo Lorem Ipsum 3</strong>
+		    <p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit, ante id porttitor faucibus, odio eros pellentesque sapien, at consectetur mi nibh at massa.
+		    </p>
+		</li>
+		<li>
+		    <strong>Titolo Lorem Ipsum 4</strong>
+		    <p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit, ante id porttitor faucibus, odio eros pellentesque sapien, at consectetur mi nibh at massa.
+		    </p>
+		</li>
+		<li>
+		    <strong>Titolo Lorem Ipsum 5</strong>
+		    <p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit, ante id porttitor faucibus, odio eros pellentesque sapien, at consectetur mi nibh at massa.
+		    </p>
+		</li>
+	    </ul>
 
     </div>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script src="jquery.newsticker.js"></script>
     <script>
     $(document).ready(function () {
-	$('#ticker').NewsTicker({
+	$("ul").NewsTicker({
 	    interval: 3000
 	});
     });

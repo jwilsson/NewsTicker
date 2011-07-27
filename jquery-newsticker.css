@@ -18,14 +18,14 @@ body {
 	width:300px;
 }
 
-#ticker {
+ul {
 	height:120px;
 	list-style:none;
 	overflow:auto;
 	width:220px;
 }
 
-#ticker li {
+ul li {
 	height:inherit;
 	width:200px;
 }
