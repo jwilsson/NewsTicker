@@ -1,68 +1,105 @@
-/**
- * jQuery NewsTicker 1.1.1
- * http://jonathanwilsson.com/projects/jquery-newsticker/
- *
- * Copyright 2011 Jonathan Wilsson
- *
- * Free to use and abuse under the MIT license.
- * http://www.opensource.org/licenses/mit-license.php
- */
-
+// jQuery NewsTicker 1.2 | Copyright 2011 Jonathan Wilsson
 (function ($) {
+	var Newsticker = function (elem, options) {
+		var $ticker = $(elem),
+			$items = $ticker.children(),
+			numItems = $items.length,
+			height = $ticker.height(),
+			next = 0,
+			itemPos = 1,
+			$inner,
+			timer = null,
+			defaults = {
+				direction: "down",
+				interval: 5000,
+				pauseOnHover: true,
+				speed: 400
+			};
 
-    $.fn.NewsTicker = function (options) {
-	
-        var vars = { // Internal vars. Please don't touch
-	    height: 0,
-	    timeout: null
-	},
-	defaults = {
-	    interval: 5000,
-	    speed: 800,
-	    pauseOnHover: true
+		// The main animation function
+		function tick() {
+			timer = setTimeout(function () {
+				if (defaults.direction === "up") {
+					next = itemPos - 1;
+				} else {
+					next = itemPos + 1;
+				}
+
+				$inner.stop().animate({"top": -next * height}, defaults.speed, function () {
+					if (next === 0) {
+						itemPos = numItems - 2;
+						$inner.css("top", -itemPos * height);
+					} else if (next === numItems - 1) {
+						itemPos = 1;
+						$inner.css("top", -height);
+					} else {
+						itemPos = next;
+					}
+				});
+
+				tick();
+			}, defaults.interval);
+		}
+
+		// If the user has supplied options let's merge them with the defaults
+		if (options) {
+			$.extend(defaults, options);
+		}
+
+		// Setup the items
+		$items.eq(0).clone().addClass("clone").appendTo($ticker);
+		$items.eq(numItems - 1).clone().addClass("clone").prependTo($ticker);
+
+		$items = $ticker.children();
+		numItems = $items.length;
+
+		$ticker.css("overflow", "hidden");
+
+		$items.wrapAll('<div class="ticker-inner"></div>').css({
+			"display": "inline",
+			"float": "left",
+			"height": height,
+			"position": "relative"
+		});
+
+		$inner = $ticker.children(".ticker-inner").css({
+			"float": "left",
+			"height": numItems * height,
+			"position": "relative",
+			"top": -height
+		});
+
+		// Prevent scrolling when there's only one item
+		if (numItems > 1) {
+			tick();
+		}
+
+		// See if the user whishes to pause the autoplay on hover
+		if (defaults.pauseOnHover) {
+			$ticker.bind("mouseover", function () {
+				clearTimeout(timer);
+			}).bind("mouseout", function () {
+				tick();
+			});
+		}
 	};
-	
-	// If the user has supplied options let's merge them with the defaults
-	if (options) {
-	    $.extend(defaults, options);
-	}
-	
-	// Change the text and the specified interval
-	function tick (elem) {
-	    vars.timeout = setTimeout(function () {
-		$(elem).find("li:first").animate({marginTop: vars.height}, defaults.speed, function () {
-		    $(this).detach().appendTo(elem).removeAttr("style");
-		});
-				
-		tick(elem);
-	    }, defaults.interval);
-	}
-	
-	return this.each(function () {
 
-	    var $this = $(this),
-		items = $this.children().length;
-	    
-	    $this.css("overflow", "hidden");
-	    
-	    vars.height = $this.height();
-	    
-	    // Prevent scrolling when there's only one item
-	    if (items > 1) {
-		tick($this);
-	    }
-	    
-	    if (defaults.pauseOnHover) {
-		$this.bind("mouseover", function () {
-		   clearTimeout(vars.timeout); 
-		}).bind("mouseout", function () {
-		    if (items > 1) {
-			tick($this);
-		    }
-		});
-	    }
-	});
-	    
-    };
+	$.fn.NewsTicker = function (options) {
 
+		return this.each(function () {
+			var $ticker = $(this),
+				newsticker;
+
+			// Bail if we already have a plugin instance for this element
+			if ($ticker.data("newsticker")) {
+				return $ticker.data("newsticker");
+			}
+
+			// Create a new Newsticker object
+			newsticker = new Newsticker(this, options);
+
+			// Store the NewsTicker object
+			$ticker.data("newsticker", newsticker);
+		});
+	};
 }(jQuery));
