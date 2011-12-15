@@ -1,4 +1,4 @@
-// jQuery NewsTicker 1.2 | Copyright 2011 Jonathan Wilsson
+// jQuery NewsTicker 1.2.1 | Copyright 2011 Jonathan Wilsson
 (function ($) {
 	var Newsticker = function (elem, options) {
 		var $ticker = $(elem),
@@ -11,9 +11,11 @@
 			timer = null,
 			defaults = {
 				direction: "down",
+				easing: "swing",
 				interval: 5000,
 				pauseOnHover: true,
-				speed: 400
+				speed: 400,
+				startSlide: 1
 			};
 
 		// The main animation function
@@ -25,7 +27,7 @@
 					next = itemPos + 1;
 				}
 
-				$inner.stop().animate({"top": -next * height}, defaults.speed, function () {
+				$inner.stop().animate({"top": -next * height}, defaults.speed, defaults.easing, function () {
 					if (next === 0) {
 						itemPos = numItems - 2;
 						$inner.css("top", -itemPos * height);
@@ -45,7 +47,7 @@
 		if (options) {
 			$.extend(defaults, options);
 		}
-
+		
 		// Setup the items
 		$items.eq(0).clone().addClass("clone").appendTo($ticker);
 		$items.eq(numItems - 1).clone().addClass("clone").prependTo($ticker);
@@ -61,14 +63,19 @@
 			"height": height,
 			"position": "relative"
 		});
-
+		
+		// Set our startslide
+		if(defaults.startSlide < (numItems - 2)) {
+			itemPos = defaults.startSlide;	
+		}
+		
 		$inner = $ticker.children(".ticker-inner").css({
 			"float": "left",
 			"height": numItems * height,
 			"position": "relative",
-			"top": -height
+			"top": -itemPos * height
 		});
-
+		
 		// Prevent scrolling when there's only one item
 		if (numItems > 1) {
 			tick();

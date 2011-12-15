@@ -83,18 +83,22 @@
 	
     </div>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-    <script src="jquery.newsticker.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="jquery.easing.1.3.js"></script>
+    <script src="jquery.newsticker.js"></script>
     <script>
     $(document).ready(function () {
 	$("#ticker1").NewsTicker({
 	    interval: 3000,
-	    pauseOnHover: false
+	    pauseOnHover: false,
+	    startSlide: 3
 	});
 	
 	$("#ticker2").NewsTicker({
 	    direction: "up",
-	    interval: 3000
+	    easing: "easeOutBounce",
+	    interval: 3000,
+	    speed: 1000
 	});
     });
     </script>
